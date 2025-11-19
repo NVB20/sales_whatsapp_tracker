@@ -115,7 +115,7 @@ def parse_registration_message(msg: dict, name_to_phone: dict, phone_to_name: di
 
 def append_to_main_table(sheet_id: str, parsed_data: dict):
     """Append parsed registration data to main table"""
-    gc = gspread.service_account(filename="secrets/sheets-api-cred.json")
+    gc = init_sheets_connection()
     sh = gc.open_by_key(sheet_id)
     ws = sh.worksheet("main")  # Adjust worksheet name as needed
     
