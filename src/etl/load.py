@@ -5,16 +5,15 @@ from src.sheets_connection import init_sheets_connection
 # Load environment variables
 load_dotenv()
 
-#connect to google sheets
-client = init_sheets_connection()
+def append_lead(data):
 
-SHEET_ID = os.getenv("SHEET_ID")
-SHEET_NAME =os.getenv("SHEET_NAME")
+    #connect to google sheets
+    client = init_sheets_connection()
 
-sheet = client.open_by_key(SHEET_ID).worksheet(SHEET_NAME)
+    SHEET_ID = os.getenv("SHEET_ID")
+    SHEET_NAME =os.getenv("SHEET_NAME")
 
-
-def append_lead(sheet, data):
+    sheet = client.open_by_key(SHEET_ID).worksheet(SHEET_NAME)
 
     # Build the row according to your sheet structure
     row = [
@@ -43,7 +42,3 @@ def append_lead(sheet, data):
     )
 
     print(f"Lead added successfully at row {insert_row}!")
-
-
-
-append_lead(sheet, message_data)
